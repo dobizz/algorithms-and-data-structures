@@ -7,14 +7,18 @@ import sys
 sys.setrecursionlimit(3000)
 
 def factorial_recursion(n): # slowest
+    if n < 0:
+        return None
     if n <= 1:
         return 1    
     return n * factorial_recursion(n-1)
 
 def factorial_recursion_memo(n, memo={}):
+    if n < 0:
+        return None
     if n in memo:
         return memo[n]
-    elif n == 0:
+    elif n <= 1:
         return 1
     else:
         x = factorial_recursion_memo(n-1, memo) * n
@@ -22,6 +26,8 @@ def factorial_recursion_memo(n, memo={}):
         return x
                
 def factorial_iter(n):
+    if n < 0:
+        return None
     product = 1
     for i in range(1, n+1):
         product *= i
